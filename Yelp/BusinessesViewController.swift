@@ -26,21 +26,21 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 120
         
         filteredRestaurants = businesses
         
         self.searchController = UISearchController(searchResultsController: nil)
         self.searchController.searchResultsUpdater = self
         
-        self.searchController.searchBar.backgroundColor = UIColor.redColor()
+        self.searchController.searchBar.backgroundColor = UIColor.whiteColor()
         
         self.searchController.dimsBackgroundDuringPresentation = false
         self.searchController.searchBar.sizeToFit()
-        //searchBar.placeholder = "Restaurant Name"
         
         self.tableView.tableHeaderView = self.searchController.searchBar
+        
+        navigationItem.titleView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
         
         tableView.tableHeaderView = searchController.searchBar
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -99,7 +99,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
         let cell = tableView.dequeueReusableCellWithIdentifier("BusinessCell", forIndexPath: indexPath) as! BusinessCell
         
-        cell.business = filteredRestaurants[indexPath.row]
+        cell.business = businesses[indexPath.row]
         
         return cell
     
